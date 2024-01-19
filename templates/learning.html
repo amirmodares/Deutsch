@@ -1,0 +1,70 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background:red')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Card  -->
+  <div class="container">
+    <div class="row">
+      <div class="clearfix">
+
+<div class="card" style="width: 33rem;">
+  <div class="card-body">
+
+    {% if word_name == 'You Finished Learning This Section' %}
+    <h1 class="card-title" style="color:green">{{word_name}}</h1>
+    {% else %}
+    <h1 class="card-title">{{word_name}}</h1>
+    {% endif %}
+    {% if word_gender == "die" %}
+    <p class="card-text" style="color:red">{{word_gender}} {{word_meaning}}</p>
+    <p class="card-text" style="color:red"></p>
+    <p class="card-text" style="color:red">{{word_description}}</p>
+    {% elif word_gender == "der" %}
+    <p class="card-text" style="color:blue">{{word_gender}} {{word_meaning}}</p>
+    <p class="card-text" style="color:blue"></p>
+    <p class="card-text" style="color:blue">{{word_description}}</p>
+    {% elif word_gender == "das" %}
+    <p class="card-text" style="color:green">{{word_gender}} {{word_meaning}}</p>
+    <p class="card-text" style="color:green"></p>
+    <p class="card-text" style="color:green">{{word_description}}</p>
+    {% else %}
+    <p class="card-text" >{{word_gender}}</p>
+    <p class="card-text" >{{word_meaning}}</p>
+    <p class="card-text" >{{word_description}}</p>
+    {% endif %}
+    {% if word_name != 'You Finished Learning This Section' %}
+    <a href="{{url_for('show_answer')}}" class="card-link">Show Answer | </a>
+    <a href="{{url_for('select_word')}}" class="card-link">Next | </a>
+    <a href="{{url_for('remove_from_list')}}" class="card-link">I Got it</a>
+    {% endif %}
+  </div>
+</div>
+
+         <hr>
+        <div class="clearfix">
+          <a class="btn btn-link float-right" href="{{url_for('profile')}}">Back to Profile</a>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}
+{% endblock %}

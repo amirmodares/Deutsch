@@ -1,0 +1,48 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('static/img/307230.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Search Result for</h1>
+            <h1 style="color:yellow">{{word}}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 col-md-10 mx-auto content">
+        {% for item in search_list %}
+
+        <p style="display:inline-block">{{item.gender}} {{ item.name }} | means: </p>
+        <p style="display:inline-block">{{ item.meaning }} | </p>
+        <p style="display:inline-block">{{ item.description }}</p>
+        <h5 style="display:inline-block">{{ item.belong_to_section.name }}</h5>
+        {% if allow_to_edit %}
+        <a class="nav-link" style="color:gray; display: inline-block" href="{{ url_for('edit_word',
+        section_id=item.belong_to_section.id, word_id=item.id) }}">edit</a>
+        {% endif %}
+        <hr>
+        {% endfor %}
+
+        <div class="clearfix">
+          <a class="btn btn-link float-right" href="{{url_for('profile')}}">Back to Profile</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}
+{% endblock %}

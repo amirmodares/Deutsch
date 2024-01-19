@@ -1,0 +1,57 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+    <header class="masthead" style="background-image: url('')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Section Manage</h1>
+            <span class="subheading"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </header>
+{% for section in section_list %}
+
+  <div class="container">
+
+      <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="clearfix">
+                   <a class="btn btn-warning" style="display: inline-block" href="{{url_for('word_manage', section_id=section.id)}}">{{section.name}}</a>
+                    <a class="nav-link" style="color:red; display: inline-block" href="{{ url_for('delete_section',
+                     section_id=section.id) }}">✘</a>
+                    <p style="display: inline-block">Number of words in this section: {{number_of_words(section.id)}}</p>
+                </div>
+          </div>
+      </div>
+<hr>
+  </div>
+
+{% endfor %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+
+
+       {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+
+      </div>
+    </div>
+  </div>
+
+         <hr>
+        <div class="clearfix">
+          <a class="btn btn-link float-right" href="{{url_for('profile')}}">Back to Profile</a>
+        </div>
+{% include "footer.html" %}
+{% endblock %}

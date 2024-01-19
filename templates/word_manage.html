@@ -1,0 +1,63 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto content">
+          <div style="padding:50px">
+          <h2 style="color:#B8621B">Add Word's Form</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        {% for message in messages %}
+        <p style="color:red">{{ message }}</p>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+          </div>
+      </div>
+    </div>
+         <hr>
+        <div class="clearfix">
+          <a class="btn btn-link float-right" href="{{url_for('section_manage')}}">Back to Section Manage</a>
+        </div>
+  </div>
+
+    <hr>
+    <div>
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto content">
+                 <p>ä || Ä || ö || Ö || ü || Ü || ß </p>
+            </div>
+        </div>
+      </div>
+    </div>
+   <hr>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto content">
+          <h2>List of words:</h2>
+        {% for word in word_list %}
+        <p style="color:#0E8388; display: inline-block"> {{word.name}}</p>
+        <a class="nav-link" style="color:red; display: inline-block" href="{{ url_for('delete_word',
+        section_id=section_id, word_id=word.id) }}">✘</a>
+          <a class="nav-link" style="color:gray; display: inline-block" href="{{ url_for('edit_word',
+        section_id=section_id, word_id=word.id) }}">edit</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% include "footer.html" %}
+{% endblock %}

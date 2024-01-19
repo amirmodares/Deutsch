@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+    <header class="masthead" style="background-image: url('')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Word Edit</h1>
+            <span class="subheading"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </header>
+
+<hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto content">
+          <h2 style="color:#B8621B">Add Word's Form</h2>
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+      </div>
+    </div>
+         <hr>
+        <div class="clearfix">
+          <a class="btn btn-link float-right" href="{{url_for('word_manage', section_id=section_id)}}">Back to Word Manage</a>
+        </div>
+  </div>
+
+   <hr>
+
+
+{% include "footer.html" %}
+{% endblock %}

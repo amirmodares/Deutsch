@@ -1,0 +1,61 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+    <header class="masthead" style="background-image: url('')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Admin Panel</h1>
+            <span class="subheading"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </header>
+
+  <div class="container">
+    <div class="row">
+        <div class="clearfix">
+          <a class="btn btn-success float-right" href="{{url_for('course_creation')}}">Create New Course</a>
+        </div>
+    </div>
+      </div>
+<hr>
+      <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto content">
+
+
+          <h2>List of courses:</h2>
+        {% for course in all_courses %}
+
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        {% for message in messages %}
+        <p style="color:red">{{ message }}</p>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+
+        <p style="color:#0E8388; display: inline-block"> {{course.name}} </p>
+          <p style="color:#675D50; display: inline-block">| | {{course.code}} | |</p>
+        <a class="nav-link" style="color:red; display: inline-block" href="{{ url_for('delete_course',
+        course_id=course.id) }}">✘</a>
+          <a class="nav-link" style="color:gray; display: inline-block">edit</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}
+{% endblock %}

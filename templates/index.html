@@ -1,0 +1,69 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('static/img/207175.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1 style="color:#EBB02D">Welcome to Amir's Site</h1>
+            <span class="subheading"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto content">
+        <h2>About The Site</h2>
+        <p style="color:black">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual
+          form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a
+          placeholder before final copy is available</p>
+
+        <hr>
+
+      <h2>Statistics</h2>
+      <div style="display:inline-block">
+        <div class="card" style="width: 23rem; ">
+          <img class="card-img-top" src="static/img/user.jpg" alt="Card image cap" style="width:22 rem;height: 18rem">
+          <div class="card-body" >
+            <h5 class="card-title" >Number of Users</h5>
+            <p class="card-text" >{{user_counter}} person</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:inline-block">
+        <div class="card" style="width: 23rem;">
+          <img class="card-img-top" src="static/img/courses.jpg" alt="Card image cap" style="width:22 rem;height: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Number of Courses</h5>
+            <p class="card-text">{{course_counter}} courses</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:inline-block">
+        <div class="card" style="width: 23rem;">
+          <img class="card-img-top" src="static/img/word.jpg" alt="Card image cap" style="width:22 rem;height: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Number of Words and Phrases</h5>
+            <p class="card-text">{{word_counter}} words</p>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}
+{% endblock %}

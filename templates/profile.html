@@ -1,0 +1,73 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('static/img/410221.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            {% if user_role=='course_manager' %}
+            <h1>Welcome {{user_name}}</h1>
+            <h2 style="color:purple">Course Manager of {{course_name}}</h2>
+            <span class="subheading"></span>
+            {% else %}
+            <h1>Let's Start Learning {{user_name}}</h1>
+            <span class="subheading"></span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+{% for section in section_list %}
+
+  <div class="container">
+
+      <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="clearfix">
+                   <a class="btn btn-danger" style="display: inline-block" href="{{url_for('pack_word_list', section_id=section.id)}}">{{section.name}}</a>
+                    <p style="display: inline-block">Number of words in this section: {{number_of_words(section.id)}}</p>
+                </div>
+          </div>
+      </div>
+<hr>
+  </div>
+
+{% endfor %}
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 col-md-10 mx-auto content">
+        {{ wtf.quick_form(searchform, novalidate=True, button_map={"submit": "primary"}) }}
+        <p>ä || Ä || ö || Ö || ü || Ü || ß </p>
+      </div>
+    </div>
+  </div>
+
+
+
+<hr>
+
+  {% if user_role=='course_manager' %}
+  <div class="container">
+    <div class="row">
+      <div class="clearfix">
+        <a class="btn btn-dark float-right" href="{{url_for('section_manage')}}">Section Manage</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+
+
+{% include "footer.html" %}
+{% endblock %}
